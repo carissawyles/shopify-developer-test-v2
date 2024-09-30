@@ -761,6 +761,8 @@ class VariantSelects extends HTMLElement {
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
+    this.updateFormLabel();
+
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
@@ -774,6 +776,14 @@ class VariantSelects extends HTMLElement {
     }
   }
 
+  updateFormLabel(){
+    const formValue = document.getElementsByClassName("form__value");
+    var arr = [...formValue];
+    arr.forEach((val, index) => {
+      val.innerHTML = this.currentVariant.options[index];
+    });
+  }
+  
   updateOptions() {
     this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
   }

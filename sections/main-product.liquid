@@ -406,7 +406,18 @@
                     </span>
                     {% render 'icon-plus' %}
                   </button>
+                  
                 </quantity-input>
+                <h3>Your Total: <span id="totalPrice">{{product.selected_or_first_available_variant.price | money}}</span></h3>
+                <script>
+                    qtButton = document.getElementById("Quantity-{{ section.id }}");
+                    qtButton.addEventListener('change', function(){
+                      qt= this.value;
+                      pr = '{{product.selected_or_first_available_variant.price}}' / 100;
+                      total = (qt * pr).toFixed(2);
+                      document.getElementById('totalPrice').textContent = '$' + total;
+                    });
+                </script>
               </div>
             {%- when 'popup' -%}
               <modal-opener
@@ -479,7 +490,7 @@
                   >
                     {%- for option in product.options_with_values -%}
                       <fieldset class="js product-form__input">
-                        <legend class="form__label">{{ option.name }}</legend>
+                        <legend class="form__label">{{ option.name }}: <span class="form__value">{{ product.selected_or_first_available_variant.title}}</span></legend>
                         {%- for value in option.values -%}
                           <input
                             type="radio"
@@ -491,9 +502,15 @@
                               checked
                             {% endif %}
                           >
-                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-                            {{ value }}
-                          </label>
+                          {% if product.variants[forloop.index0].image != blank %}
+                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" title="{{ value }}"
+                              style="background: url({{ product.variants[forloop.index0].image | img_url: '' }}) center center no-repeat; background-size: cover;"
+                            ></label>
+                          {% else %}
+                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                              {{ value }}
+                            </label>
+                          {% endif %}
                         {%- endfor -%}
                       </fieldset>
                     {%- endfor -%}
@@ -768,7 +785,7 @@
                               <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">{% render 'icon-caret' %}</button>
                             </div>
                           {%- endif -%}
-                        </slider-component>
+                        </slideshow-component>
                         {%- if block.settings.make_collapsible_row -%}
                           </details>
                         {%- endif -%}
