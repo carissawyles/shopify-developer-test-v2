@@ -210,8 +210,11 @@ fieldset.product-form__input .form__label {
   transition: border var(--duration-short) ease;
   cursor: pointer;
   position: relative;
-  width: 55px;
-  height: 55px;
+  width: 65px;
+  height: 65px;
+}
+@media screen and (max-width: 449px) {
+  .product-form__input input[type='radio'] + label{margin-right: 2rem;}
 }
 
 .product-form__input input[type='radio'] + label:before {
@@ -465,18 +468,19 @@ a.product__text {
 .product-form__buttons {
   max-width: 44rem;
 }
-@media screen and (min-width: 1110px){
-  .shopify-payment-button__button--unbranded, .product-form__submit{padding: 0 1rem !important;}
-  .product-form__quantity{float: left; padding-right: 20px;}
-  .product-form__buy-buttons{margin-top: 56px;}
-  .product__accordion{clear: left;}
-}
+
 @media screen and (min-width: 900px) {
   .product-form__buttons {
     display: flex;
     gap: 20px;
   }
   .product-form__submit, .shopify-payment-button{width: 50%; }
+}
+@media screen and (min-width: 1110px){
+  .shopify-payment-button__button--unbranded, .product-form__submit{padding: 0 1rem !important;}
+  .product-form__quantity{float: left; padding-right: 20px;}
+  .product-form__buy-buttons{margin-top: 56px;}
+  .product__accordion{clear: left;}
 }
 @media screen and (max-width: 749px) {
   .product-form__quantity{float: left; padding-right: 20px;}
@@ -1130,14 +1134,24 @@ a.product__text {
   }
 }
 
-@media screen and (min-width: 900px) {
-  .product--small .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
-    width: calc(25% - 0.8rem);
+@media screen and (min-width: 990px) {
+  .slider-mobile-gutter{float: right; width: 80%;} 
+  .product--thumbnail_slider .thumbnail-slider {
+    display: flex;
+    gap: 10px;
+    float: left;
+    width: 20%;
+    align-items: center;
   }
 
-  .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
-    width: calc(20% - 0.8rem);
+  .thumbnail-slider .thumbnail-list.slider--tablet-up {
+    padding-right: 10px;
+    flex-direction: column;
   }
+  .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
+    width: 100%; 
+  }
+  .product--thumbnail_slider .product__media-gallery{position:static;}
 }
 
 .thumbnail {
