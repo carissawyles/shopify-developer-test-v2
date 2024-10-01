@@ -84,11 +84,11 @@
               endif
 
               if section.settings.media_size == 'large'
-                assign media_width = 0.65
-              elsif section.settings.media_size == 'medium'
                 assign media_width = 0.55
-              elsif section.settings.media_size == 'small'
+              elsif section.settings.media_size == 'medium'
                 assign media_width = 0.45
+              elsif section.settings.media_size == 'small'
+                assign media_width = 0.35
               endif
             -%}
             {%- if product.selected_or_first_available_variant.featured_media != null -%}
@@ -410,6 +410,7 @@
                 </quantity-input>
                 <h3>Your Total: <span id="totalPrice">{{product.selected_or_first_available_variant.price | money}}</span></h3>
                 <script>
+                  document.addEventListener("DOMContentLoaded", () => {
                     qtButton = document.getElementById("Quantity-{{ section.id }}");
                     qtButton.addEventListener('change', function(){
                       qt= this.value;
@@ -417,6 +418,7 @@
                       total = (qt * pr).toFixed(2);
                       document.getElementById('totalPrice').textContent = '$' + total;
                     });
+                  });
                 </script>
               </div>
             {%- when 'popup' -%}
@@ -507,9 +509,9 @@
                               style="background: url({{ product.variants[forloop.index0].image | img_url: '' }}) center center no-repeat; background-size: cover;"
                             ></label>
                           {% else %}
-                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-                              {{ value }}
-                            </label>
+                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                              style="background-color:{{settings.colors_accent_1}};"
+                            ></label>
                           {% endif %}
                         {%- endfor -%}
                       </fieldset>
@@ -593,7 +595,7 @@
                 </div>
               </noscript>
             {%- when 'buy_buttons' -%}
-              <div {{ block.shopify_attributes }}>
+              <div class="product-form__buy-buttons" {{ block.shopify_attributes }}>
                 <product-form class="product-form">
                   <div class="product-form__error-message-wrapper" role="alert" hidden>
                     <svg

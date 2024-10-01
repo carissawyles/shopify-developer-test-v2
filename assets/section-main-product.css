@@ -57,14 +57,14 @@
 
 @media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 65%;
-    width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 55%;
+    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
     padding: 0 0 0 4rem;
-    max-width: 35%;
-    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 45%;
+    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media).product--right .product__info-wrapper {
@@ -73,14 +73,14 @@
 
   .product--medium:not(.product--no-media) .product__media-wrapper,
   .product--small:not(.product--no-media) .product__info-wrapper {
-    max-width: 55%;
-    width: calc(55% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 45%;
+    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--medium:not(.product--no-media) .product__info-wrapper,
   .product--small:not(.product--no-media) .product__media-wrapper {
-    max-width: 45%;
-    width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 35%;
+    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 }
 
@@ -201,7 +201,7 @@ fieldset.product-form__input .form__label {
   border-radius: var(--variant-pills-radius);
   color: rgb(var(--color-foreground));
   display: inline-block;
-  margin: 0.7rem 2rem 0.2rem 0;
+  margin: 0.7rem 0.7rem 0.2rem 0;
   padding: 1rem 2rem;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
@@ -465,7 +465,29 @@ a.product__text {
 .product-form__buttons {
   max-width: 44rem;
 }
-
+@media screen and (min-width: 1110px){
+  .shopify-payment-button__button--unbranded, .product-form__submit{padding: 0 1rem !important;}
+  .product-form__quantity{float: left; padding-right: 20px;}
+  .product-form__buy-buttons{margin-top: 56px;}
+  .product__accordion{clear: left;}
+}
+@media screen and (min-width: 900px) {
+  .product-form__buttons {
+    display: flex;
+    gap: 20px;
+  }
+  .product-form__submit, .shopify-payment-button{width: 50%; }
+}
+@media screen and (max-width: 749px) {
+  .product-form__quantity{float: left; padding-right: 20px;}
+  .product-form__submit{width: 63%; margin-top: 56px;}
+}
+@media screen and (max-width: 469px) {
+  .product-form__submit{width: 50%; }
+}
+@media screen and (max-width: 354px) {
+  .product-form__submit{width: 100%; }
+}
 .product--no-media .product__info-container > modal-opener {
   display: block;
   text-align: center;
